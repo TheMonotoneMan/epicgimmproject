@@ -151,7 +151,7 @@
         // Load systems dropdown on page load
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const response = await fetch('http://localhost/g35_systems/');
+                const response = await fetch('/g35_systems/');
                 const data = await response.json();
 
                 const systemSelect = document.getElementById('system_id');
