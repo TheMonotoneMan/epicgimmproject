@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <title>Add Infiniti G35 Part</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="images/infiniti.png">
+</head>
+
+<body>
+    <div id="titleBar">
+        <h1 id="theTitle">Add New Infiniti G35 Part</h1>
+        <button class="vistaGlass" id="menuButton" type="button" data-bs-toggle="offcanvas"
+            data-bs-target=".offcanvas-top">☰</button>
+    </div>
+
+
+    <br />
+
+    <!--Get to input page and stuff here-->
+    <div class="offcanvas offcanvas-top">
+        <div class="offcanvas-header">
+            <h2>Options</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="container ocbContent">
+                <ul>
+                    <li><a class="vistaBlock" href="index.html">Parts List</a></li>
+                    <li><a class="vistaBlock" href="insert.html">Add New Part</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="inputOptions">
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Part Name</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <input class="vistaInput" id='part_name' name="part_name" type='text' required />
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Average Price</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <input class="vistaInput" id='avg_price' type='number' step='0.01' required />
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Engine Model</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='engine_model'>
+                            <option value=''></option>
+                            <option value='VQ35DE'>VQ35DE</option>
+                            <option value='VQ35HR'>VQ35HR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Transmission Model</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='transmission_model'>
+                            <option value=''></option>
+                            <option value='Automatic'>Automatic</option>
+                            <option value='Manual'>Manual</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Body Type</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='body_model'>
+                            <option value=''></option>
+                            <option value='Sedan'>Sedan</option>
+                            <option value='Coupe'>Coupe</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Component System</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='system_id' required>
+                            <option value=''></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-12'>
+                        <button class="vistaGlass" id='submit'>Add Part</button>
+                        <button class="vistaGlass" id='reset' type='reset'>Clear Form</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h2>What to Include:</h2>
+                <ul>
+                    <li>Part Name: The name of the part</li>
+                    <li>Average Price: The rough price range for the part (end with a 0 if you could)</li>
+                    <li>Engine Model (Optional): Which engine the part will work with if applicable</li>
+                    <li>Transmission Model (Optional): Is the part for an automatic or manual transmission if necessary?</li>
+                    <li>Body Type (Optional): If the part is for a sedan (4 door) or coupe (2 door)</li>
+                    <li>Component System: What system does the part belong to?</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <hr />
+
+    <div id='message' class='alert' style='display: none;'></div>
+
+    <script>
+        // Load systems dropdown on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://localhost/g35_systems/');
+                const data = await response.json();
+
+                const systemSelect = document.getElementById('system_id');
+                if (data.data && Array.isArray(data.data)) {
+                    data.data.forEach(system => {
+                        const option = document.createElement('option');
+                        option.value = system.id;
+                        option.textContent = system.system_name;
+                        systemSelect.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading systems:', error);
+            }
+        });
+
+        document.getElementById('submit').addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            const partName = document.getElementById('part_name').value.trim();
+            const avgPrice = document.getElementById('avg_price').value;
+            const engineModel = document.getElementById('engine_model').value;
+            const transmissionModel = document.getElementById('transmission_model').value;
+            const bodyModel = document.getElementById('body_model').value;
+            const systemId = document.getElementById('system_id').value;
+
+            if (!partName || !avgPrice || !systemId) {
+                showMessage('Part name, average price, and system are required.', 'danger');
+                return;
+            }
+
+            const payload = {
+                part_name: partName,
+                avg_price: parseFloat(avgPrice),
+                engine_model: engineModel || null,
+                transmission_model: transmissionModel || null,
+                body_model: bodyModel || null,
+                system_id: parseInt(systemId)
+            };
+
+            try {
+                const response = await fetch('http://localhost/infiniti_g35_parts/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                let result;
+                try {
+                    result = await response.json();  // Try to parse as JSON
+                } catch (e) {
+                    result = { message: await response.text() }; // Fallback to text if not JSON
+                }
+
+                console.log('Response Status:', response.status);
+                console.log('Response Body:', result);
+
+                if (response.status === 201) {
+                    showMessage('Part added successfully!', 'success');
+                    document.getElementById('part_name').value = '';
+                    document.getElementById('avg_price').value = '';
+                    document.getElementById('engine_model').value = '';
+                    document.getElementById('transmission_model').value = '';
+                    document.getElementById('body_model').value = '';
+                    document.getElementById('system_id').value = '';
+                } else {
+                    showMessage(result.message || 'Unknown error', 'danger');
+                }
+            } catch (error) {
+                console.error('Network Error:', error);
+                showMessage('Network error occurred. Check console for details.', 'danger');
+            }
+        });
+
+        document.getElementById('reset').addEventListener('click', () => {
+            document.getElementById('part_name').value = '';
+            document.getElementById('avg_price').value = '';
+            document.getElementById('engine_model').value = '';
+            document.getElementById('transmission_model').value = '';
+            document.getElementById('body_model').value = '';
+            document.getElementById('system_id').value = '';
+            document.getElementById('message').style.display = 'none';
+        });
+
+        function showMessage(msg, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = msg;
+            messageDiv.className = `alert alert-${type}`;
+            messageDiv.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

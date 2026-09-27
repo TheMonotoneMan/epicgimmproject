@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update Some Shtuff</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="images/infiniti.png">
+</head>
+
+<body>
+    <div id="titleBar">
+        <h1 id="theTitle">Update a Part</h1>
+        <button class="vistaGlass" id="menuButton" type="button" data-bs-toggle="offcanvas"
+            data-bs-target=".offcanvas-top">☰</button>
+    </div>
+
+    <br />
+
+    <!--Get to input page and stuff here-->
+    <div class="offcanvas offcanvas-top">
+        <div class="offcanvas-header">
+            <h2>Options</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="container ocbContent">
+                <ul>
+                    <li><a class="vistaBlock" href="index.html">Parts List</a></li>
+                    <li><a class="vistaBlock" href="insert.html">Add New Part</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="inputOptions">
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Part Name</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <input class="vistaInput" id='part_name' name="part_name" type='text' required />
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Average Price</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <input class="vistaInput" id='avg_price' type='number' step='0.01' required />
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Engine Model</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='engine_model'>
+                            <option value=''></option>
+                            <option value='VQ35DE'>VQ35DE</option>
+                            <option value='VQ35HR'>VQ35HR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Transmission Model</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='transmission_model'>
+                            <option value=''></option>
+                            <option value='Automatic'>Automatic</option>
+                            <option value='Manual'>Manual</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Body Type</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='body_model'>
+                            <option value=''></option>
+                            <option value='Sedan'>Sedan</option>
+                            <option value='Coupe'>Coupe</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+
+                <div class='row mb-3'>
+                    <div class='col-md-2'>
+                        <label>Component System</label>
+                    </div>
+                    <div class='col-md-10'>
+                        <select class="vistaInput" id='system_id' required>
+                            <option value=''></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-12'>
+                        <button class="vistaGlass" id='submit'>Update Part</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h3>Fix Other's Mistakes</h3>
+                <p>
+                    Typo? Wrong price? Wrong System? Added something completly unrelated but want to fix it? This page is for you!
+                </p>
+                <img src="images/Versus.JPG" class="img-fluid" alt="An Infiniti doing a sick drift." />
+            </div>
+        </div>
+
+
+        <script>
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const fetchMethod = (url, fetchParameters, callback) => {
+                fetch(url, fetchParameters)
+                    .then((response) => {
+                        return new Promise((resolve) => response.json()
+                            .then((json) => resolve({
+                                status: response.status,
+                                json,
+                            })
+                            ));
+                    })
+                    .then(({ status, json }) => {
+                        callback(status, json);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            };
+
+            fetchMethod(
+                '/g35_systems/',
+                { method: 'GET' },
+                (status, json) => {
+                    if (200 === status) {
+                        const systemSelect = document.getElementById('system_id');
+                        for (system of json.data) {
+                            let option = document.createElement("option");
+                            option.value = system.id;
+                            option.text = system.system_name;
+                            systemSelect.add(option);
+                        }
+
+                        fetchMethod(
+                            '/infiniti_g35_parts/' + urlParams.get('id') + '/',
+                            { method: 'GET' },
+                            (status, json) => {
+                                if (200 === status) {
+                                    document.getElementById('part_name').value = json.data[0].part_name;
+                                    document.getElementById('avg_price').value = json.data[0].avg_price;
+                                    document.getElementById('engine_model').value = json.data[0].engine_model;
+                                    document.getElementById('transmission_model').value = json.data[0].transmission_model;
+                                    document.getElementById('body_model').value = json.data[0].body_model;
+                                    document.getElementById('system_id').value = json.data[0].system_id;
+                                }
+                            }
+                        );
+                    }
+                }
+            );
+
+            document.getElementById('submit').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const partName = document.getElementById('part_name').value.trim();
+                const avgPrice = document.getElementById('avg_price').value;
+                const engineModel = document.getElementById('engine_model').value;
+                const transmissionModel = document.getElementById('transmission_model').value;
+                const bodyModel = document.getElementById('body_model').value;
+                const systemId = document.getElementById('system_id').value;
+
+                if (!partName || !avgPrice || !systemId) {
+                    // Note: Ensure showMessage is defined in styles.css or another script
+                    alert('Part name, average price, and system are required.');
+                    return;
+                }
+
+                const payload = {
+                    part_name: partName,
+                    avg_price: parseFloat(avgPrice),
+                    engine_model: engineModel || null,
+                    transmission_model: transmissionModel || null,
+                    body_model: bodyModel || null,
+                    system_id: parseInt(systemId)
+                };
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+
+                if (!id) {
+                    alert('Missing part ID in URL.');
+                    return;
+                }
+
+                fetchMethod(
+                    '/infiniti_g35_parts/' + id + '/',
+                    {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload) // Fixed: Was 'formData', now properly stringified JSON
+                    },
+                    (status, json) => {
+                        if (status === 200 || status === 201) {
+                            alert('Part updated successfully!');
+                            window.location.reload();
+                        } else {
+                            alert('Error: ' + (json.message || 'Unknown error'));
+                        }
+                    }
+                );
+            });
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <title>INFINITI G35 Part Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/infiniti.png">
+</head>
+
+<body>
+    <div id="titleBar">
+        <h1 id="theTitle">INFINITI G35 Parts</h1>
+        <button class="vistaGlass" id="menuButton" type="button" data-bs-toggle="offcanvas"
+            data-bs-target=".offcanvas-top">☰</button>
+    </div>
+
+    <br />
+
+    <!--Get to input page and stuff here-->
+    <div class="offcanvas offcanvas-top">
+        <div class="offcanvas-header">
+            <h2>Options</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="container ocbContent">
+                <ul>
+                    <li><a class="vistaBlock" href="index.html">Parts List</a></li>
+                    <li><a class="vistaBlock" href="insert.html">Add New Part</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="inputOptions">
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Part Name?</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <input class="vistaInput" id='name' name="name" type='text' />
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Component System</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <select class="vistaInput" id='system_name'>
+                            <option value=''></option>
+                            <option value='air intake'>Air Intake</option>
+                            <option value='suspension'>Suspension</option>
+                            <option value='engine'>Engine</option>
+                            <option value='exhaust'>Exhaust</option>
+                            <option value='cooling'>Cooling</option>
+                            <option value='transmission'>Transmission</option>
+                            <option value='electrical'>Electrical</option>
+                            <option value='handling'>Handling</option>
+                            <option value='interior'>Interior</option>
+                            <option value='body'>Body</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Average Price</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <input class="vistaInput" id='avg_price' type='text' />
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Engine Model</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <select class="vistaInput" id='engine_model'>
+                            <option value=''></option>
+                            <option value='VQ35DE'>VQ35DE</option>
+                            <option value='VQ35HR'>VQ35HR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Transmission Model</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <select class="vistaInput" id='transmission_model'>
+                            <option value=''></option>
+                            <option value='automatic'>Automatic</option>
+                            <option value='manual'>Manual</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Body Type</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <select class="vistaInput" id='body_model'>
+                            <option value=''></option>
+                            <option value='sedan'>Sedan</option>
+                            <option value='coupe'>Coupe</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+
+                <div class='row mb-3'>
+                    <div class='col-md-4'>
+                        <label>Sort By Price</label>
+                    </div>
+                    <div class='col-md-8'>
+                        <select class="vistaInput" id='sort'>
+                            <option value=''></option>
+                            <option value='ASC'>Ascending</option>
+                            <option value='DESC'>Descending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-12'>
+                        <label>Limit To <input class="vistaInput" id='limit' name="limit" type='text' /> Entries
+                        </label>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-12'>
+                        <button class="vistaGlass" id='search'>Search for Parts</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h3>Why Is this Dedicated to G35s?</h3>
+                <p>
+                    Because that's what I have? I know someone who knows where to get all the fun parts for them even
+                    though all of the fun cosmetics
+                    are designed for the coupes and won't work on my sedan but hey mine's got the slightly more powerful
+                    base engine so.
+                </p>
+                <h3>Fun Infiniti Fact!</h3>
+                <p>
+                    Infiniti is a subsidiary of Nissan. In Japan, Infiniti does not actually sell cars, but instead as
+                    other lines of Nissan vehicles.
+                    The G35, specifically, was sold as the Nissan Skyline GT350. The problem with this is that all the
+                    car people in the states will get angry if you call it that, so it's really funny to do that.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div id='parts' class='overflow'>
+        <div id="preParts">
+            <h2>Parts Will Show Here... But in the Meantime...</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h3>Listen to Your Heart, Buy That Car</h3>
+                        <p>
+                            Have you seen the garbage car manufacturers make nowadays? It's horrible!
+                            I can PROMISE you that an older car, which will be LEAGUES cheaper than these new behemoths,
+                            will be so much more rewarding to drive if you just put in a little bit of work on it.
+                        </p>
+                        <p>
+                            Also where do people even get 50-80 grand to just drop on those damn things? And why drop it
+                            on something that looks terrible, has abhorrnet mileage, and will be a NIGHTMARE to try and
+                            fix?
+                            The amount of electronics and tech they cram into these things is ridiculous, you'd need an
+                            electrician instead of a mechanic at this point.
+                        </p>
+                    </div>
+                    <div class="col-md-7">
+                        <img src="images/Solo.JPG" class="img-fluid"
+                            alt="An image of an absolutely GLORIOUS drift pulled off by a G35" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="images/Versus.JPG" class="img-fluid"
+                            alt="An image of more drifting. What did you expect?" />
+                    </div>
+                    <div class="col-md-6">
+                        <h3>What's Happening Here?</h3>
+                        <p>
+                            Drifting is a technique where you intentionally oversteer your car to make it lose traction
+                            and slide around corners.
+                            This was popularized by media like the Fast and Furious movies, Initial D, and has a rich
+                            history in Japanese motorsports.
+                        </p>
+                        <p>
+                            Like the psychos we are, we brought that culture over here. Cars like the G35 are perfect
+                            for making drift builds because of their rear-wheel drive layout, balanced weight, and their
+                            engines.
+                            While not particularly the most popular cars (and now our reputation is ruined becuase most
+                            Infiniti drivers cant get their s**t together), Infinitis have proven to be very capable
+                            drift cars with their close relation to the Nissan Skyline, with Infinitis even being sold
+                            as Skylines in Japan.
+                        </p>
+                        <p>
+                            Want to get into drifting? The best place to start is finding a cheap, rear-wheel drive car
+                            with good power, weight distro, and especially a manual transmission.
+                            You can find cars like a MK-3 Toyota Supra, an Infiniti G35 or G37, or some good Hondas for
+                            5-10 grand if you look at the right places. The hard part is getting all the fun aftermarket
+                            parts.
+                        </p>
+                    </div>
+                </div>
+                <p class="subtext">No I did not go onto some random site to get these images. Go support my brother!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+        document.getElementById('search').addEventListener('click', (event) => {
+            const getParameters = {};
+
+            // The doc.getEleById needs to use the "id" of the form element
+            if (document.getElementById('name').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.name = document.getElementById('name').value;
+            }
+
+            if (document.getElementById('avg_price').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.avg_price = document.getElementById('avg_price').value;
+            }
+
+            if (document.getElementById('system_name').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.system_name = document.getElementById('system_name').value;
+            }
+            if (document.getElementById('engine_model').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.engine_model = document.getElementById('engine_model').value;
+            }
+
+            if (document.getElementById('transmission_model').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.transmission_model = document.getElementById('transmission_model').value;
+            }
+
+            if (document.getElementById('body_model').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.body_model = document.getElementById('body_model').value;
+            }
+            // if (document.getElementById('year').value.length !== 0) {
+            //         getParameters.year = document.getElementById('year').value;
+            //     }
+
+            //     if (document.getElementById('undefined_years').checked) {
+            //         getParameters.undefined_years = 'on';
+            //     }
+
+            if (document.getElementById('sort').value.length !== 0) {
+                getParameters.sort = document.getElementById('sort').value;
+            }
+
+            if (document.getElementById('limit').value.length !== 0) {
+                //getParams.system will turn into example.com/?name=XXXX
+                getParameters.limit = document.getElementById('limit').value;
+            }
+
+            //Settings for FETCH API request
+            let fetchSettings = {
+                method: 'GET'
+            };
+
+            //Send FETCH API request
+            fetch("http://localhost/infiniti_g35_parts/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+                .then((response) => {
+                    return new Promise((resolve) => response.json()
+                        .then((json) => resolve({
+                            status: response.status,
+                            json,
+                        })
+                        ));
+                })
+                //Logic to display errors on form 
+                .then(({ status, json }) => {
+                    if (status === 200) {
+                        let displayTable = ' <div class="table-responsive"> <table class="table table-striped reveal">' +
+                            '<thead>' +
+                            '<tr>' +
+                            '<th width="15%">Part Name</th>' +
+                            '<th width="5%">Average Price</th>' +
+                            '<th width="12.5%">Engine Model</th>' +
+                            '<th width="12.5%">Transmission Model</th>' +
+                            '<th width="12.5%">Body Type</th>' +
+                            '<th width="10%">System</th>' +
+                            '<th width="12.5%">Actions</th>' +
+                            '</tr>' +
+                            '</thead>' +
+                            '<tbody>';
+                        if (typeof json.data !== 'undefined') {
+                            for (row of json.data) {
+                                displayTable += '<tr>' +
+                                    '<td class="leftText">' + row.part_name + '</td>' +
+                                    '<td>' + row.avg_price + '</td>' +
+                                    '<td>' + row.engine_model + '</td>' +
+                                    '<td>' + row.transmission_model + '</td>' +
+                                    '<td>' + row.body_model + '</td>' +
+                                    '<td>' + row.system_name + '</td>' +
+                                    '<td> <a class="vistaBlock editButton" href="update.html?id=' + row.part_id + '">Edit</a></td>' +
+                                    '</tr>';
+                            }
+                        }
+                        displayTable += '</tbody></table></div>';
+                        document.getElementById('parts').innerHTML = displayTable;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });               
+    </script>
+</body>
+
+</html>

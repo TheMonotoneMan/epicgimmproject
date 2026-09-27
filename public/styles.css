@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Pixelify+Sans:wght@400..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+html {
+    background-color: rgb(181, 211, 222);
+}
+
+body {
+    background-color: rgb(181, 211, 222);
+    background-image: linear-gradient(rgb(181, 211, 222), lightblue);
+    font-family: 'ubuntu', 'sans-serif';
+
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+    margin: 0;
+}
+.body:after {
+    content: '';
+
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    width: calc(100% - 4px);
+    height: 75%;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+
+table {
+    max-width: 95%;
+    margin: auto;
+    text-align: center;
+    border: 2px solid black;
+}
+th {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+input {
+    border-radius: 10px;
+}
+
+select {
+    border-radius: 10px;
+}
+
+button {
+    border-radius: 10px;
+}
+
+a {
+    color: whitesmoke;
+}
+a:hover {
+    color: skyblue;
+}
+
+option {
+    background-color: whitesmoke;
+}
+
+hr {
+    margin-bottom: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    max-width: fit-content;
+    margin: 12px;
+}
+
+img {
+    border: 3px solid silver;
+    border-radius: 5px;
+}
+
+.container {
+    background-color: rgb(181, 211, 222);
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.row {
+    justify-content: center;
+}
+
+.vistaGlass {
+    position: relative;
+    padding: 5px 10px;
+    border: none;
+
+    background-color: lightskyblue;
+    background-image: linear-gradient(lightskyblue, lightblue);
+
+    font-family: 'istok web', 'sans-serif';
+    font-weight: 500;
+    color: white;
+    text-shadow: 0px -1px #0e2f4d;
+
+    transition: all 0.2s ease-in-out;
+}
+.vistaGlass:after {
+    content: '';
+
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    width: calc(100% - 4px);
+    height: 50%;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    border-radius: 10px;
+}
+.vistaGlass:hover {
+    background: linear-gradient(lightblue, lightskyblue);
+    transform: translateY(-2px);
+}
+
+.vistaInput {
+    position: relative;
+    padding: 1px 3px;
+    border: 1px solid rgb(178, 178, 178);
+
+    background-color: whitesmoke;
+    background-image: linear-gradient(
+        10deg,
+         rgb(187, 187, 187) 10%,
+         rgb(215, 215, 215) 25%,
+         white 50%,
+         rgb(215, 215, 215) 75%,
+         rgb(187, 187, 187) 90%
+        );
+
+    font-family: 'ubuntu', 'sans-serif';
+    font-weight: 200;
+
+    transition: all 0.2s ease-in-out;
+}
+.vistaInput:after {
+    content: '';
+
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    width: calc(100% - 4px);
+    height: 50%;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    border-radius: 10px;
+}
+.vistaInput:hover {
+    transform: translateY(-2px);
+}
+
+.vistaBlock {
+    position: relative;
+    padding: 5px 10px;
+    border: none;
+
+    background-color: silver;
+    background-image: linear-gradient(silver, lightgray);
+
+    font-family: 'istok web', 'sans-serif';
+    font-weight: 500;
+    color: white;
+    text-shadow: 0px -1px #0e2f4d;
+
+    transition: all 0.2s ease-in-out;
+}
+.vistaBlock:after {
+    content: '';
+
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    width: calc(100% - 4px);
+    height: 50%;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+.vistaBlock:hover {
+    background: linear-gradient(lightblue, lightskyblue);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.editButton {
+    display: block;
+    margin: 0 auto;
+}
+
+.offcanvas {
+    background: linear-gradient(
+        15deg,
+        #999 5%,
+        #fff 10%,
+        #ccc 30%,
+        #ddd 50%,
+        #ccc 70%,
+        #fff 80%,
+        #999 95%
+    );
+}
+
+.ocbContent {
+    background-color: whitesmoke;
+    border: 5px solid #999;
+    border-radius: 10px;
+}
+
+.leftText {
+    text-align: left;
+}
+
+.subtext {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.reveal {
+    animation: verticalReveal 0.75s ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    overflow: hidden;
+}
+
+
+#theTitle {
+    text-align: center;
+    font-family: 'istok web', 'sans-serif';
+}
+
+#search {
+    display: block;
+    margin: 0 auto;
+}
+
+#inputOptions {
+    background-color: whitesmoke;
+    border-radius: 3px;
+    border: 2px solid #999;
+}
+
+#titleBar {
+    background: linear-gradient(
+        45deg,
+        #999 5%,
+        #fff 10%,
+        #ccc 30%,
+        #ddd 50%,
+        #ccc 70%,
+        #fff 80%,
+        #999 95%
+    );
+    border-bottom: 10px solid black;
+}
+
+#menuButton {
+    display: absolute;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    margin-left: 10px;
+}
+
+#parts {
+    background-image: linear-gradient(
+        135deg,
+        #ccc 10%,
+        #ddd 30%,
+        #fff 50%,
+        #ddd 70%,
+        #ccc 90%
+    );
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    background-clip: margin-box;
+
+    flex: 1;
+}
+
+#preParts > .container {
+    background-color: whitesmoke;
+    border-radius: 3px;
+    border: 2px solid #999;
+}
+
+@keyframes verticalReveal {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: fit-content;
+        opacity: 1;
+    }
+}
