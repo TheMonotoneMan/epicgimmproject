@@ -7,12 +7,16 @@ const { body, validationResult } = require('express-validator');
 
 //Setup defaults for script
 const app = express();
-app.use(express.static(__epicgimmproject + '/public'))
+app.use(express.static('public'))
 app.use(express.json())
 
-app.get('/', (req,res) => {
+//Stylesheet
+app.use(express.static(__epicgimmproject + '/public'));
+//Webpage
+app.get('/', (req, res) => {
     res.sendFile(path.join(__epicgimmproject, 'public', 'index.html'));
 });
+
 
 const upload = multer()
 const port = 80 //Default port to http server
