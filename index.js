@@ -7,11 +7,11 @@ const { body, validationResult } = require('express-validator');
 
 //Setup defaults for script
 const app = express();
-app.use(express.static(epicgimmproject + '/public'))
+app.use(express.static(__epicgimmproject + '/public'))
 app.use(express.json())
 
 app.get('/', (req,res) => {
-    res.sendFile(path.join(epicgimmproject, 'public', 'index.html'));
+    res.sendFile(path.join(__epicgimmproject, 'public', 'index.html'));
 });
 
 const upload = multer()
