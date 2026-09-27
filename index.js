@@ -10,13 +10,6 @@ const app = express();
 app.use(express.static('public'))
 app.use(express.json())
 
-//Stylesheet
-app.use(express.static(__epicgimmproject + '/public'));
-//Webpage
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__epicgimmproject, 'public', 'index.html'));
-});
-
 
 const upload = multer()
 const port = 80 //Default port to http server
