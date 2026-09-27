@@ -296,7 +296,7 @@
             };
 
             //Send FETCH API request
-            fetch("http://localhost/infiniti_g35_parts/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+            fetch("/infiniti_g35_parts/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
                 .then((response) => {
                     return new Promise((resolve) => response.json()
                         .then((json) => resolve({
