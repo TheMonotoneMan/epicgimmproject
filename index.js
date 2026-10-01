@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 const upload = multer()
-const port = 8080 //Default port to http server
+const port = 3000 //Default port to http server
 
 let connection = null;
 
